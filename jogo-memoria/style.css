@@ -1,18 +1,39 @@
+/* Paleta de Cores */
+:root {
+    --background: #16161a;
+    --headline: #fffffe;
+    --paragraph: #94a1b2;
+    --button: #7f5af0;
+    --button-text: #fffffe;
+    --illustration-stroke: #010101;
+    --main: #fffffe;
+    --highlight: #7f5af0;
+    --secondary: #72757e;
+    --tertiary: #2cb67d;
+}
+
+/* Aplicação da paleta */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
-    background-image: linear-gradient(to bottom, #ddd, #003e70);
+    background-color: var(--background);
+    color: var(--paragraph);
     margin: 0;
-
+    place-items: center;
+    display: grid;
 }
 
 .container {
-    background-color: #fff;
+    background-color: var(--main);
+    color: black;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-top: 150px;
+    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+    
 }
 
 .grid-container {
@@ -27,7 +48,8 @@ body {
 .card {
     width: 100px;
     height: 150px;
-    background-color: #ddd;
+    background-color: var(--secondary);
+    color:black;
     border-radius: 5px;
     display: flex;
     justify-content: center;
@@ -40,13 +62,13 @@ body {
 }
 
 .card.flipped {
-    background-color: #fff;
-    border: 2px solid #ccc;
+    background-color: var(--main);
+    border: 2px solid var(--highlight);
 }
 
 .card.matched {
-    border: 3px solid #28a745;
-    box-shadow: 0 0 10px #28a745;
+    border: 3px solid var(--tertiary);
+    box-shadow: 0 0 10px var(--tertiary);
     pointer-events: none;
 }
 
@@ -93,8 +115,9 @@ body {
 }
 
 header {
-    background-color: #77b3f7;
-    border-bottom: 3px solid #003e70;
+    background-color: var(--highlight);
+    color: var(--headline);
+    border-bottom: 3px solid var(--illustration-stroke);
     font-weight: bold;
     position: fixed;
     top: 0;
@@ -117,8 +140,8 @@ header p {
 
 #github-link {
     text-decoration: none;
-    color: #003e70;
-    background-color: #fff;
+    color: var(--highlight);
+    background-color: var(--main);
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 0.9rem;
@@ -128,15 +151,16 @@ header p {
 }
 
 #github-link:hover {
-    background-color: #003e70;
-    color: #fff;
+    background-color: var(--highlight);
+    color: var(--main);
 }
 
 #info-button {
-    margin-top: 150px; /* Espaçamento abaixo do cabeçalho */
+    margin-top: 130px; /* Espaçamento abaixo do cabeçalho */
+    margin-bottom: 10px;
     margin-left: 20px; /* Alinha o botão à esquerda */
-    background-color: #b7bdf2;
-    color: #003e70;
+    background-color: var(--button);
+    color: var(--button-text);
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -147,17 +171,18 @@ header p {
 }
 
 #info-button:hover {
-    background-color: #003e70;
-    color: #fff;
+    background-color: var(--highlight);
+    color: var(--main);
 }
 
 #info-section {
-    background-color: #fff;
-    border: 1px solid #003e70;
+    background-color: var(--main);
+    border: 1px solid var(--highlight);
     border-radius: 8px;
     padding: 5px;
     margin-top: 20px;
     display: none;
+    color: var(--paragraph);
 }
 
 #info-section h2 {
