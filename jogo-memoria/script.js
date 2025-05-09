@@ -3,15 +3,20 @@ document.addEventListener('DOMContentLoaded', () => {
     let cards = [];
     let flippedCards = [];
     let matchedCards = [];
-
-    // Lista de nomes dos arquivos de imagem (certifique-se dos caminhos corretos)
+    
     const cardImages = [
-        'bolso.chan.jpg',
-        'gatito.jpg',
-        'igorS.jpg',
-        'jake.jpg',
-        'negoney.jpg',
-        'theodor.jpg',
+        'assets/bolso.chan.jpg',
+        'assets/gatito.jpg',
+        'assets/igorS.jpg',
+        'assets/jake.jpg',
+        'assets/negoney.jpg',
+        'assets/theodor.jpg',
+        'assets/bolso.chan.jpg',
+        'assets/gatito.jpg',
+        'assets/igorS.jpg',
+        'assets/jake.jpg',
+        'assets/negoney.jpg',
+        'assets/theodor.jpg',
     ];
 
     /**
@@ -19,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
      * @param {Array} array O array a ser embaralhado.
      * @returns {Array} O array embaralhado.
      */
-    function shuffleArray(array) {
+    function shuffleArray(array) { // shuffle émbaralhar em inglês
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [array[i], array[j]] = [array[j], array[i]];
@@ -66,15 +71,17 @@ document.addEventListener('DOMContentLoaded', () => {
      * Lida com o clique em uma carta.
      * @param {Event} event O evento de clique.
      */
-    function handleCardClick(event) {
-        const clickedCard = event.currentTarget;
+    function handleCardClick(event) {// lida com o evento de clique em uma carta
+        const clickedCard = event.currentTarget;// vai retornar o objeto que ta sendo invocado
 
+        // Verifica se já existem 2 cartas viradas ou se a carta clicada já está virada
         if (flippedCards.length < 2 && !clickedCard.classList.contains('flipped') && !matchedCards.includes(clickedCard)) {
-            flipCard(clickedCard);
-            flippedCards.push(clickedCard);
+            flipCard(clickedCard); // Vira a carta
+            flippedCards.push(clickedCard); // Adiciona a carta ao array de cartas viradas
 
+            // Se duas cartas foram viradas, verifica se formam um par
             if (flippedCards.length === 2) {
-                setTimeout(checkMatch, 1000);
+                setTimeout(checkMatch, 1000); // Aguarda 1 segundo antes de verificar
             }
         }
     }
@@ -93,22 +100,22 @@ document.addEventListener('DOMContentLoaded', () => {
      * @param {HTMLElement} card2 A segunda carta a ser desvirada.
      */
     function unflipCards(card1, card2) {
-        card1.classList.remove('flipped');
-        card2.classList.remove('flipped');
+        card1.classList.remove('flipped'); // Remove a classe "flipped" da primeira carta
+        card2.classList.remove('flipped'); // Remove a classe "flipped" da segunda carta
     }
 
     /**
      * Verifica se as duas cartas viradas formam um par.
      */
     function checkMatch() {
-        const [card1, card2] = flippedCards;
-        const value1 = card1.dataset.value;
-        const value2 = card2.dataset.value;
+        const [card1, card2] = flippedCards; // Obtém as duas cartas viradas
+        const value1 = card1.dataset.value; // Valor da primeira carta
+        const value2 = card2.dataset.value; // Valor da segunda carta
 
         if (value1 === value2) {
-            handleMatch(card1, card2);
+            handleMatch(card1, card2); // Se formarem um par, trata como um par encontrado
         } else {
-            handleMismatch(card1, card2);
+            handleMismatch(card1, card2); // Se não formarem um par, desvira as cartas
         }
 
         // Reseta o array de cartas viradas
@@ -121,7 +128,11 @@ document.addEventListener('DOMContentLoaded', () => {
      * @param {HTMLElement} card2 A segunda carta do par.
      */
     function handleMatch(card1, card2) {
-        matchedCards.push(card1, card2);
+        card1.classList.add('matched'); // Adiciona a classe "matched" à primeira carta
+        card2.classList.add('matched'); // Adiciona a classe "matched" à segunda carta
+        matchedCards.push(card1, card2); // Adiciona as cartas ao array de pares encontrados
+
+        // Verifica se todas as cartas foram encontradas
         if (matchedCards.length === cards.length) {
             setTimeout(() => alert('Parabéns! Você venceu!'), 500);
         }
@@ -133,9 +144,25 @@ document.addEventListener('DOMContentLoaded', () => {
      * @param {HTMLElement} card2 A segunda carta não correspondente.
      */
     function handleMismatch(card1, card2) {
-        setTimeout(() => unflipCards(card1, card2), 1000);
+        setTimeout(() => unflipCards(card1, card2), 1000); // Aguarda 1 segundo antes de desvirar
     }
 
     // Inicializa o jogo
     createCards();
+
+    const infoButton = document.getElementById('info-button');
+    const infoSection = document.getElementById('info-section');
+
+    infoButton.addEventListener('click', () => {
+        // Alterna a visibilidade da seção de informações
+        if (infoSection.classList.contains('hidden')) {
+            infoSection.classList.remove('hidden');
+            infoSection.style.display = 'block';
+            infoButton.textContent = 'Ocultar informações sobre C#';
+        } else {
+            infoSection.classList.add('hidden');
+            infoSection.style.display = 'none';
+            infoButton.textContent = 'Mais informações sobre C#';
+        }
+    });
 });

@@ -1,11 +1,9 @@
 body {
-    font-family: sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
     background-image: linear-gradient(to bottom, #ddd, #003e70);
     margin: 0;
+
 }
 
 .container {
@@ -14,18 +12,21 @@ body {
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+    margin-top: 150px;
 }
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(4, 100px); /* Cria uma grade de 4 colunas */
-    grid-gap: 10px;
+    grid-template-columns: repeat(4, 100px);
+    grid-gap: 15px;
     margin-top: 20px;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .card {
     width: 100px;
-    height: 100px;
+    height: 150px;
     background-color: #ddd;
     border-radius: 5px;
     display: flex;
@@ -33,15 +34,20 @@ body {
     align-items: center;
     font-size: 24px;
     cursor: pointer;
-    user-select: none; /* Impede a seleção de texto ao clicar */
+    user-select: none;
     transition: transform 0.3s ease-in-out;
-    transform-style: preserve-3d; /* Necessário para a animação de flip */
+    transform-style: preserve-3d;
 }
 
 .card.flipped {
-    transform: rotateY(180deg);
-    background-color: #fff; /* Cor de fundo quando virada */
+    background-color: #fff;
     border: 2px solid #ccc;
+}
+
+.card.matched {
+    border: 3px solid #28a745;
+    box-shadow: 0 0 10px #28a745;
+    pointer-events: none;
 }
 
 .card-inner {
@@ -61,7 +67,7 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    backface-visibility: hidden; /* Esconde a parte de trás quando virada */
+    backface-visibility: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,5 +82,125 @@ body {
 .card-back {
     background-color: #eee;
     transform: rotateY(180deg);
-    font-size: 2em;
+    font-size: 2rem;
+}
+
+.card-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+header {
+    background-color: #77b3f7;
+    border-bottom: 3px solid #003e70;
+    font-weight: bold;
+    position: fixed;
+    top: 0;
+    padding: 10px 20px;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+header p {
+    margin: 5px 0 10px;
+    font-size: 0.9rem;
+}
+
+#github-link {
+    text-decoration: none;
+    color: #003e70;
+    background-color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    align-self: flex-end;
+    margin-top: 10px;
+}
+
+#github-link:hover {
+    background-color: #003e70;
+    color: #fff;
+}
+
+#info-button {
+    margin-top: 150px; /* Espaçamento abaixo do cabeçalho */
+    margin-left: 20px; /* Alinha o botão à esquerda */
+    background-color: #b7bdf2;
+    color: #003e70;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 1000; /* Garante que o botão fique acima de outros elementos */
+    transition: background-color 0.3s ease;
+}
+
+#info-button:hover {
+    background-color: #003e70;
+    color: #fff;
+}
+
+#info-section {
+    background-color: #fff;
+    border: 1px solid #003e70;
+    border-radius: 8px;
+    padding: 5px;
+    margin-top: 20px;
+    display: none;
+}
+
+#info-section h2 {
+    color: #003e70;
+    margin-bottom: 10px;
+}
+
+.hidden {
+    display: none;
+}
+/*responisvidade*/
+@media (max-width: 768px) {
+    .container {
+        margin-top: 100px;
+        padding: 20px;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(3, 80px);
+        grid-gap: 10px;
+    }
+
+    .card {
+        width: 80px;
+        height: 120px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        margin-top: 80px;
+        padding: 15px;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(2, 70px);
+        grid-gap: 8px;
+    }
+
+    .card {
+        width: 70px;
+        height: 100px;
+        font-size: 16px;
+    }
 }
